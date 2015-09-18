@@ -7,6 +7,7 @@
 //
 
 #import "JLRoute.h"
+#import "NSString+JLRouteAdditions.h"
 
 
 @interface JLRoute ()
@@ -21,18 +22,29 @@
 
 @implementation JLRoute
 
-- (nonnull instancetype)initWithPath:(nonnull NSString *)path priority:(NSUInteger)priority handler:(nonnull void (^)(NSDictionary *__nonnull parameters))handlerBlock;
+- (nonnull instancetype)init
 {
+    return [self initWithPath:nil priority:JLRouteDefaultPriority handler:nil];
+}
+
+- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock;
+{
+    NSParameterAssert(path != nil);
+    NSParameterAssert(handlerBlock != nil);
+    
     if ((self = [super init]))
     {
         self.path = path;
         self.pathComponents = [[self.path pathComponents] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT SELF like '/'"]];
+        self.handler = handlerBlock;
     }
     return self;
 }
 
-- (NSDictionary *)parametersForURL:(NSURL *)URL components:(NSArray *)URLComponents
+- (nonnull NSDictionary *)matchWithURLComponentsIfPossible:(nonnull NSArray<NSString *> *)URLComponents
 {
+    NSParameterAssert(URLComponents != nil);
+    
     NSDictionary *routeParameters = nil;
     
     // do a quick component count check to quickly eliminate incorrect patterns
@@ -85,7 +97,8 @@
             componentIndex++;
         }
         
-        if (isMatch) {
+        if (isMatch)
+        {
             routeParameters = variables;
         }
     }

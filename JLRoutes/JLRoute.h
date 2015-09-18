@@ -15,6 +15,8 @@ static NSString *__nonnull const JLRouteNamespaceKey = @"JLRouteNamespace";
 static NSString *__nonnull const JLRouteWildcardComponentsKey = @"JLRouteWildcardComponents";
 static NSString *__nonnull const JLRoutesGlobalNamespaceKey = @"JLRoutesGlobalNamespace";
 
+static NSUInteger const JLRouteDefaultPriority = 0;
+
 
 @class JLRoutes;
 
@@ -27,8 +29,9 @@ static NSString *__nonnull const JLRoutesGlobalNamespaceKey = @"JLRoutesGlobalNa
 @property (nonatomic, strong, readonly, nonnull) BOOL (^handler)(NSDictionary *__nonnull parameters);
 @property (nonatomic, readonly) NSUInteger priority;
 
-- (nonnull instancetype)initWithPath:(nonnull NSString *)path priority:(NSUInteger)priority handler:(nonnull BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock;
+- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
 
-- (nonnull NSDictionary *)parametersForURL:(nonnull NSURL *)URL components:(nonnull NSArray *)URLComponents;
+/// Try to match with the given URL components. Returns nil if a match couldn't be made, or the match result if it could.
+- (nonnull NSDictionary *)matchWithURLComponentsIfPossible:(nonnull NSArray<NSString *> *)URLComponents;
 
 @end
