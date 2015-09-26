@@ -14,7 +14,23 @@
 #import "JLURLRouter.h"
 
 
-static NSString *__nonnull const JLGlobalRoutingScheme = @"JLGlobalRoutingScheme";
+static NSString *__nonnull const JLRoutesGlobalScheme = @"JLRoutesGlobalScheme";
+
+
+typedef NS_ENUM(NSUInteger, JLRoutesLogLevel)
+{
+    /// No logging
+    JLRoutesLogLevelNone = 0,
+    
+    /// Basic logging of events as they happen
+    JLRoutesLogLevelInfo,
+    
+    /// Verbose logging, only intended for debugging
+    JLRoutesLogLevelVerbose
+};
+
+/// Logs the formatted message with the given level
+extern void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...);
 
 
 @interface JLRoutes : NSObject
@@ -25,6 +41,8 @@ static NSString *__nonnull const JLGlobalRoutingScheme = @"JLGlobalRoutingScheme
  */
 
 
+// -- Router management -----------------
+
 /// The default (global) router
 + (nonnull __kindof JLURLRouter *)defaultRouter;
 
@@ -34,8 +52,11 @@ static NSString *__nonnull const JLGlobalRoutingScheme = @"JLGlobalRoutingScheme
 /// Unregister and delete a router
 + (void)unregisterRouterForScheme:(nonnull NSString *)scheme;
 
+/// Unregister a specific router instance
++ (void)unregisterRouter:(nonnull __kindof JLURLRouter *)router;
 
-// Convenience methods
+
+// -- Convenience -----------------
 
 /// Tries to find a valid router for this URL.
 + (BOOL)canRouteURL:(nonnull NSURL *)URL;
@@ -44,14 +65,14 @@ static NSString *__nonnull const JLGlobalRoutingScheme = @"JLGlobalRoutingScheme
 + (BOOL)routeURL:(nonnull NSURL *)URL;
 
 /// Route the given URL, if possible. Appends userInfo, if passed.
-- (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo;
++ (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo;
 
 
-// Global settings
+// -- Global settings -----------------
 
 /// Allows configuration of verbose logging. Default is NO. This is mostly just helpful with debugging.
-+ (void)setVerboseLoggingEnabled:(BOOL)loggingEnabled;
-+ (BOOL)isVerboseLoggingEnabled;
++ (void)setLogLevel:(JLRoutesLogLevel)logLevel;
++ (JLRoutesLogLevel)logLevel;
 
 /// Tells JLRoutes that it should manually replace '+' in parsed values to ' '. Defaults to YES.
 + (void)setShouldDecodePlusSymbols:(BOOL)shouldDeecode;
