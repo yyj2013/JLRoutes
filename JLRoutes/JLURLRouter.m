@@ -203,6 +203,8 @@
             break;
         }
     }
+    
+    return didRoute;
 }
 
 - (nonnull NSDictionary <NSString *, id> *)routeParamsForRoute:(JLRoute *)route queryParams:(NSDictionary *)queryParams fragmentParams:(NSDictionary *)fragmentParams matchParams:(NSDictionary *)matchParams URL:(NSURL *)URL userInfo:(NSDictionary *)userInfo
