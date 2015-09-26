@@ -13,24 +13,8 @@
 #import <Foundation/Foundation.h>
 
 
-static NSUInteger const JLRouteDefaultPriority = 0;
+@interface NSURL (JLRouteAdditions)
 
-
-@class JLRoutes;
-
-@interface JLRoute : NSObject
-
-@property (nonatomic, weak, nullable) JLRoutes *parentRoutesController;
-
-@property (nonatomic, strong, readonly, nonnull) NSString *identifier;
-@property (nonatomic, strong, readonly, nonnull) NSString *path;
-@property (nonatomic, strong, readonly, nonnull) NSArray <NSString *> *pathComponents;
-@property (nonatomic, strong, readonly, nonnull) BOOL (^handler)(NSDictionary *__nonnull parameters);
-@property (nonatomic, readonly) NSUInteger priority;
-
-- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
-
-/// Try to match with the given URL components. Returns nil if a match couldn't be made, or the match result if it could.
-- (nonnull NSDictionary *)matchWithURLComponentsIfPossible:(nonnull NSArray<NSString *> *)URLComponents;
+- (nonnull NSArray *)JLRoutes_nonSlashPathComponents;
 
 @end

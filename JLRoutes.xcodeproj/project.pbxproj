@@ -16,6 +16,10 @@
 		5D33682B16C6DC9300F983AA /* libJLRoutes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33681216C6DC9300F983AA /* libJLRoutes.a */; };
 		5D33683116C6DC9300F983AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D33682F16C6DC9300F983AA /* InfoPlist.strings */; };
 		5D33683416C6DC9300F983AA /* JLRoutesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33683316C6DC9300F983AA /* JLRoutesTests.m */; };
+		5D8513F31BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */; settings = {ASSET_TAGS = (); }; };
+		5D8513F41BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */; settings = {ASSET_TAGS = (); }; };
+		5D8513F51BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		5D8513F61BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		5D9059D51BAB4DFA00943E69 /* JLRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059D31BAB4DFA00943E69 /* JLRoute.h */; settings = {ASSET_TAGS = (); }; };
 		5D9059D61BAB4DFA00943E69 /* JLRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059D31BAB4DFA00943E69 /* JLRoute.h */; settings = {ASSET_TAGS = (); }; };
 		5D9059D71BAB4DFA00943E69 /* JLRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059D41BAB4DFA00943E69 /* JLRoute.m */; settings = {ASSET_TAGS = (); }; };
@@ -24,6 +28,10 @@
 		5D9059DC1BAB4ED600943E69 /* NSString+JLRouteAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059D91BAB4ED600943E69 /* NSString+JLRouteAdditions.h */; settings = {ASSET_TAGS = (); }; };
 		5D9059DD1BAB4ED600943E69 /* NSString+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059DA1BAB4ED600943E69 /* NSString+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		5D9059DE1BAB4ED600943E69 /* NSString+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059DA1BAB4ED600943E69 /* NSString+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		5D9059E31BAC718F00943E69 /* JLURLRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059E11BAC718F00943E69 /* JLURLRouter.h */; settings = {ASSET_TAGS = (); }; };
+		5D9059E41BAC718F00943E69 /* JLURLRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059E11BAC718F00943E69 /* JLURLRouter.h */; settings = {ASSET_TAGS = (); }; };
+		5D9059E51BAC718F00943E69 /* JLURLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059E21BAC718F00943E69 /* JLURLRouter.m */; settings = {ASSET_TAGS = (); }; };
+		5D9059E61BAC718F00943E69 /* JLURLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059E21BAC718F00943E69 /* JLURLRouter.m */; settings = {ASSET_TAGS = (); }; };
 		D0C20A3017061066007746A6 /* JLRoutes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D33681A16C6DC9300F983AA /* JLRoutes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -50,10 +58,14 @@
 		5D33683216C6DC9300F983AA /* JLRoutesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRoutesTests.h; sourceTree = "<group>"; };
 		5D33683316C6DC9300F983AA /* JLRoutesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLRoutesTests.m; sourceTree = "<group>"; };
 		5D33684416C6DCCC00F983AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JLRouteAdditions.h"; sourceTree = "<group>"; };
+		5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JLRouteAdditions.m"; sourceTree = "<group>"; };
 		5D9059D31BAB4DFA00943E69 /* JLRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLRoute.h; sourceTree = "<group>"; };
 		5D9059D41BAB4DFA00943E69 /* JLRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLRoute.m; sourceTree = "<group>"; };
 		5D9059D91BAB4ED600943E69 /* NSString+JLRouteAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JLRouteAdditions.h"; sourceTree = "<group>"; };
 		5D9059DA1BAB4ED600943E69 /* NSString+JLRouteAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JLRouteAdditions.m"; sourceTree = "<group>"; };
+		5D9059E11BAC718F00943E69 /* JLURLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLURLRouter.h; sourceTree = "<group>"; };
+		5D9059E21BAC718F00943E69 /* JLURLRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLURLRouter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +141,14 @@
 			children = (
 				5D33681A16C6DC9300F983AA /* JLRoutes.h */,
 				5D33681C16C6DC9300F983AA /* JLRoutes.m */,
+				5D9059E11BAC718F00943E69 /* JLURLRouter.h */,
+				5D9059E21BAC718F00943E69 /* JLURLRouter.m */,
 				5D9059D31BAB4DFA00943E69 /* JLRoute.h */,
 				5D9059D41BAB4DFA00943E69 /* JLRoute.m */,
 				5D9059D91BAB4ED600943E69 /* NSString+JLRouteAdditions.h */,
 				5D9059DA1BAB4ED600943E69 /* NSString+JLRouteAdditions.m */,
+				5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */,
+				5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */,
 			);
 			path = JLRoutes;
 			sourceTree = "<group>";
@@ -164,8 +180,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9059D61BAB4DFA00943E69 /* JLRoute.h in Headers */,
+				5D9059E41BAC718F00943E69 /* JLURLRouter.h in Headers */,
 				5D9059DC1BAB4ED600943E69 /* NSString+JLRouteAdditions.h in Headers */,
 				5C5AD9B51B45C07300ED25A3 /* JLRoutes.h in Headers */,
+				5D8513F41BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +192,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D9059D51BAB4DFA00943E69 /* JLRoute.h in Headers */,
+				5D9059E31BAC718F00943E69 /* JLURLRouter.h in Headers */,
 				5D9059DB1BAB4ED600943E69 /* NSString+JLRouteAdditions.h in Headers */,
 				D0C20A3017061066007746A6 /* JLRoutes.h in Headers */,
+				5D8513F31BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +331,9 @@
 			files = (
 				5C5AD9B61B45C07800ED25A3 /* JLRoutes.m in Sources */,
 				5D9059DE1BAB4ED600943E69 /* NSString+JLRouteAdditions.m in Sources */,
+				5D9059E61BAC718F00943E69 /* JLURLRouter.m in Sources */,
 				5D9059D81BAB4DFA00943E69 /* JLRoute.m in Sources */,
+				5D8513F61BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +343,9 @@
 			files = (
 				5D33681D16C6DC9300F983AA /* JLRoutes.m in Sources */,
 				5D9059DD1BAB4ED600943E69 /* NSString+JLRouteAdditions.m in Sources */,
+				5D9059E51BAC718F00943E69 /* JLURLRouter.m in Sources */,
 				5D9059D71BAB4DFA00943E69 /* JLRoute.m in Sources */,
+				5D8513F51BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

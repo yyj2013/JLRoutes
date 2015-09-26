@@ -30,10 +30,10 @@
 	XCTAssertFalse(self.didRoute, @"Expected not to route successfully")
 
 #define JLValidatePattern(pattern)\
-	XCTAssertEqualObjects(self.lastMatch[kJLRoutePatternKey], pattern, @"Pattern did not match")
+	XCTAssertEqualObjects(self.lastMatch[JLRoutePatternKey], pattern, @"Pattern did not match")
 
 #define JLValidateScheme(scheme)\
-	XCTAssertEqualObjects(self.lastMatch[kJLRouteNamespaceKey], scheme, @"Scheme did not match")
+	XCTAssertEqualObjects(self.lastMatch[JLRouteNamespaceKey], scheme, @"Scheme did not match")
 
 
 static JLRoutesTests *testsInstance = nil;
@@ -57,24 +57,24 @@ static JLRoutesTests *testsInstance = nil;
 	[JLRoutes setVerboseLoggingEnabled:YES];
 	
 	// used in testBasicRouting
-	[JLRoutes addRoute:@"/test" handler:defaultHandler];
-	[JLRoutes addRoute:@"/user/view/:userID" handler:defaultHandler];
-	[JLRoutes addRoute:@"/:object/:action/:primaryKey" handler:defaultHandler];
-	[JLRoutes addRoute:@"/" handler:defaultHandler];
-	[JLRoutes addRoute:@"/:" handler:defaultHandler];
-	[JLRoutes addRoute:@"/interleaving/:param1/foo/:param2" handler:defaultHandler];
-	[JLRoutes addRoute:@"/xyz/wildcard/*" handler:defaultHandler];
-	[JLRoutes addRoute:@"/route/:param/*" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/test" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/user/view/:userID" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/:object/:action/:primaryKey" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/:" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/interleaving/:param1/foo/:param2" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/xyz/wildcard/*" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/route/:param/*" handler:defaultHandler];
     
     // used in testMultiple
-    [JLRoutes addRoutes:@[@"/multiple1", @"/multiple2"] handler:defaultHandler];
+    [[JLRoutes defaultRoutes] addRoutes:@[@"/multiple1", @"/multiple2"] handler:defaultHandler];
 	
 	// used in testPriority
-	[JLRoutes addRoute:@"/test/priority/:level" handler:defaultHandler];
-	[JLRoutes addRoute:@"/test/priority/high" priority:20 handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/test/priority/:level" handler:defaultHandler];
+	[[JLRoutes defaultRoutes] addRoute:@"/test/priority/high" priority:20 handler:defaultHandler];
 	
 	// used in testBlockReturnValue
-	[JLRoutes addRoute:@"/return/:value" handler:^BOOL(NSDictionary *parameters) {
+	[[JLRoutes defaultRoutes] addRoute:@"/return/:value" handler:^BOOL(NSDictionary *parameters) {
 		testsInstance.lastMatch = parameters;
 		NSString *value = parameters[@"value"];
 		return [value isEqualToString:@"yes"];

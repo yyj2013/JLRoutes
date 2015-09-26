@@ -10,27 +10,14 @@
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import <Foundation/Foundation.h>
+#import "NSURL+JLRouteAdditions.h"
 
 
-static NSUInteger const JLRouteDefaultPriority = 0;
+@implementation NSURL (JLRouteAdditions)
 
-
-@class JLRoutes;
-
-@interface JLRoute : NSObject
-
-@property (nonatomic, weak, nullable) JLRoutes *parentRoutesController;
-
-@property (nonatomic, strong, readonly, nonnull) NSString *identifier;
-@property (nonatomic, strong, readonly, nonnull) NSString *path;
-@property (nonatomic, strong, readonly, nonnull) NSArray <NSString *> *pathComponents;
-@property (nonatomic, strong, readonly, nonnull) BOOL (^handler)(NSDictionary *__nonnull parameters);
-@property (nonatomic, readonly) NSUInteger priority;
-
-- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
-
-/// Try to match with the given URL components. Returns nil if a match couldn't be made, or the match result if it could.
-- (nonnull NSDictionary *)matchWithURLComponentsIfPossible:(nonnull NSArray<NSString *> *)URLComponents;
+- (nonnull NSArray *)JLRoutes_nonSlashPathComponents
+{
+    return [(self.pathComponents ?: @[]) filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT SELF like '/'"]];
+}
 
 @end
