@@ -15,6 +15,7 @@
 
 @interface NSString (JLRouteAdditions)
 
+- (nonnull NSArray *)JLRoutes_nonSlashPathComponents;
 - (nonnull NSString *)JLRoutes_URLDecodedStringDecodingPlusSymbols:(BOOL)decodePlusSymbols;
 - (nonnull NSDictionary *)JLRoutes_URLParameterDictionaryDecodingPlusSymbols:(BOOL)decodePlusSymbols;
 

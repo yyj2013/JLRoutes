@@ -15,6 +15,11 @@
 
 @implementation NSString (JLRouteAdditions)
 
+- (nonnull NSArray *)JLRoutes_nonSlashPathComponents
+{
+    return [(self.pathComponents ?: @[]) filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT SELF like '/'"]];
+}
+
 - (nonnull NSString *)JLRoutes_URLDecodedStringDecodingPlusSymbols:(BOOL)decodePlusSymbols
 {
     NSString *input = self;
