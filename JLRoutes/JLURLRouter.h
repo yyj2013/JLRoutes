@@ -14,10 +14,10 @@
 #import "JLRoute.h"
 
 
-static NSString *__nonnull const JLRoutePathKey = @"JLRoutePath";
-static NSString *__nonnull const JLRouteURLKey = @"JLRouteURL";
-static NSString *__nonnull const JLRouteSchemeKey = @"JLRouteScheme";
-static NSString *__nonnull const JLRouteWildcardComponentsKey = @"JLRouteWildcardComponents";
+static NSString *__nonnull const JLRouteParamKey = @"JLRouteParamKey";
+static NSString *__nonnull const JLRouteURLParamKey = @"JLRouteURLParamKey";
+static NSString *__nonnull const JLRouteWildcardParamsParamKey = @"JLRouteWildcardParamsParamKey";
+static NSString *__nonnull const JLRouteUserInfoParamKey = @"JLRouteUserInfoParamKey";
 
 
 @interface JLURLRouter : NSObject
@@ -25,46 +25,44 @@ static NSString *__nonnull const JLRouteWildcardComponentsKey = @"JLRouteWildcar
 /// Create URL router instance for the given scheme. Scheme is optional.
 - (nonnull instancetype)initWithScheme:(nullable NSString *)scheme NS_DESIGNATED_INITIALIZER;
 
-
 /// The URL scheme associated with this router
 @property (nonatomic, strong, nullable, readonly) NSString *scheme;
 
-/// Controls whether or not this routes controller will try to match a URL with global routes if it can't be matched in the current namespace. Default is NO.
-@property (nonatomic) BOOL shouldFallbackToGlobalRoutes;
-
 /// Called any time routeURL returns NO. Respects shouldFallbackToGlobalRoutes.
-@property (nonatomic, copy, nullable) void (^unmatchedURLHandler)(JLRoutes *__nonnull routes, NSURL *__nonnull URL, NSDictionary *__nonnull parameters);
+@property (nonatomic, copy, nullable) void (^unmatchedURLHandler)(__kindof JLURLRouter *__nonnull router, NSURL *__nonnull URL, NSDictionary *__nonnull parameters);
+
+/// Customize the default router class. Defaults to [JLRoute class].
+@property (nonatomic, nonnull) Class defaultRouterClass;
 
 
-// Setting up routes
-
+// -- Route management -----------------
 
 /// Registers a route instance
 - (void)registerRoute:(nonnull __kindof JLRoute *)route;
 
-/// Creates and registers a route with default priority (0)
-- (nonnull JLRoute *)addRoute:(nonnull NSString *)routePath handler:(nonnull BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock;
+/// Creates and registers a route with priority JLRouteDefaultPriority
+- (nonnull __kindof JLRoute *)addRouteWithPath:(nonnull NSString *)routePath handler:(nonnull BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock;
 
-/// Creates and registers a route with given priority
-- (nonnull JLRoute *)addRoute:(nonnull NSString *)routePath priority:(NSUInteger)priority handler:(nonnull BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock;
+/// Creates and registers a route with a specified priority
+- (nonnull __kindof JLRoute *)addRouteWithPath:(nonnull NSString *)routePath priority:(NSUInteger)priority handler:(nonnull BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock;
 
-/// Creates and registers multiple routes with a single handler and with default priority (0)
-- (nonnull NSArray<JLRoute *> *)addRoutes:(nonnull NSArray<NSString *> *)routePaths handler:(nonnull BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock;
+/// Creates and registers multiple routes with a single handler and with priority JLRouteDefaultPriority
+- (nonnull NSArray<__kindof JLRoute *> *)addRoutesWithPaths:(nonnull NSArray<NSString *> *)routePaths handler:(nonnull BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock;
+
+/// Returns the route with the given path, if it can be found in this router
+- (nullable __kindof JLRoute *)routeWithPath:(nonnull NSString *)path;
+
+/// Removes an arbtrary route instance
+- (void)removeRoute:(nonnull __kindof JLRoute *)route;
 
 /// Removes the first route with the matching path
 - (void)removeRouteWithPath:(nonnull NSString *)routePath;
 
-/// Removes the route with the matching identifier
-- (void)removeRouteWithIdentifier:(nonnull NSString *)routeIdentifier;
-
 /// Removes all routes
 - (void)removeAllRoutes;
 
-/// Creates and registers a route with default priority (0) using dictionary-style subscripting.
-- (void)setObject:(nonnull BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock forKeyedSubscript:(nonnull NSString *)routePatten;
 
-
-// Routing
+// -- Routing -----------------
 
 /// Returns whether a route exists for a URL
 - (BOOL)canRouteURL:(nonnull NSURL *)URL;
@@ -74,9 +72,6 @@ static NSString *__nonnull const JLRouteWildcardComponentsKey = @"JLRouteWildcar
 
 /// Routes a URL, calling handler blocks (for patterns that match URL) until one returns YES, optionally specifying a userInfo dictionary.
 - (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo;
-
-/// Prints the entire routing table
-- (nonnull NSString *)routesDescription;
 
 
 @end
