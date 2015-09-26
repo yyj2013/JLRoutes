@@ -13,7 +13,8 @@
 #import "JLRoutes.h"
 
 
-static NSMutableDictionary *routers = nil;
+static NSMutableArray <__kindof JLURLRouter *> *routers = nil;
+static NSMutableDictionary <NSString *, __kindof JLURLRouter *> *routersByScheme = nil;
 static Class defaultRouterClass = Nil;
 static BOOL verboseLoggingEnabled = NO;
 static BOOL shouldDecodePlusSymbols = YES;
@@ -49,7 +50,7 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 
 + (nonnull __kindof JLURLRouter *)defaultRouter
 {
-	return [self routerForScheme:JLRoutesGlobalScheme];
+	return [self routerForScheme:JLRoutesDefaultRouterScheme];
 }
 
 + (nonnull __kindof JLURLRouter *)routerForScheme:(nonnull NSString *)scheme
@@ -61,17 +62,20 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
     
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		routers = [[NSMutableDictionary alloc] init];
+        routers = [NSMutableArray array];
+        routersByScheme = [NSMutableDictionary dictionary];
+        
         if (defaultRouterClass == Nil)
             defaultRouterClass = [JLURLRouter class];
 	});
     
-    JLURLRouter *router = routers[scheme];
+    JLURLRouter *router = routersByScheme[scheme];
 	
 	if (router == nil)
     {
 		router = [[defaultRouterClass alloc] initWithScheme:scheme];
-		routers[scheme] = router;
+		routersByScheme[scheme] = router;
+        [routers addObject:router];
 	}
 	
 	return router;
@@ -87,7 +91,8 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
     if (router == nil)
         return;
     
-    [routers removeObjectForKey:router.scheme];
+    [routers removeObject:router];
+    [routersByScheme removeObjectForKey:router.scheme];
 }
 
 #pragma mark - Convenience
@@ -96,9 +101,13 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 {
     NSParameterAssert(URL != nil);
     
-    JLURLRouter *router = [self firstEligibleRouterForURL:URL];
+    JLURLRouter *router = [self eligibleRouterForURL:URL];
+    if (router == nil)
+    {
+        return NO;
+    }
     
-    return router != nil;
+    return [router canRouteURL:URL];
 }
 
 + (BOOL)routeURL:(nonnull NSURL *)URL
@@ -109,17 +118,20 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 
 + (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo
 {
-    return NO;
+    NSParameterAssert(URL != nil);
+    
+    JLURLRouter *router = [self eligibleRouterForURL:URL];
+    if (router == nil)
+    {
+        return NO;
+    }
+    
+    return [router routeURL:URL userInfo:userInfo];
 }
 
-+ (JLURLRouter *)firstEligibleRouterForURL:(nonnull NSURL *)URL
++ (JLURLRouter *)eligibleRouterForURL:(nonnull NSURL *)URL
 {
-    JLURLRouter *eligibleRouter = nil;
-    
-    //JLURLRouter *router = [self routerForScheme:URL.scheme] ?: [self defaultRouter];
-    
-    
-    return eligibleRouter;
+    return [self routerForScheme:URL.scheme] ?: [self defaultRouter];
 }
 
 #pragma mark - Settings

@@ -14,7 +14,7 @@
 #import "JLURLRouter.h"
 
 
-static NSString *__nonnull const JLRoutesGlobalScheme = @"JLRoutesGlobalScheme";
+static NSString *__nonnull const JLRoutesDefaultRouterScheme = @"JLRoutesDefaultRouterScheme";
 
 
 typedef NS_ENUM(NSUInteger, JLRoutesLogLevel)
