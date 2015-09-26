@@ -15,6 +15,6 @@
 
 @interface NSURL (JLRouteAdditions)
 
-- (nonnull NSArray *)JLRoutes_nonSlashPathComponents;
+- (nonnull NSArray<NSString *> *)JLRoutes_nonSlashPathComponents;
 
 @end

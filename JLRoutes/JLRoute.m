@@ -56,7 +56,7 @@
     return copy;
 }
 
-- (nonnull NSDictionary *)matchWithPathComponentsIfPossible:(nonnull NSArray<NSString *> *)pathComponents
+- (nonnull NSDictionary<NSString *, NSString *> *)matchWithPathComponentsIfPossible:(nonnull NSArray<NSString *> *)pathComponents
 {
     NSParameterAssert(pathComponents != nil);
     
@@ -100,7 +100,7 @@
             else if ([patternComponent isEqualToString:@"*"])
             {
                 // match wildcards
-                variables[JLRouteWildcardParamsParamKey] = [pathComponents subarrayWithRange:NSMakeRange(componentIndex, pathComponents.count-componentIndex)];
+                variables[JLRouteParamWildcardParamsKey] = [pathComponents subarrayWithRange:NSMakeRange(componentIndex, pathComponents.count-componentIndex)];
                 isMatch = YES;
                 break;
             }

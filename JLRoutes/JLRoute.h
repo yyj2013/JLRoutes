@@ -33,6 +33,6 @@ static NSUInteger const JLRouteHighestPriority = 10000;
 - (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
 
 /// Try to match with the given path components. Returns nil if a match couldn't be made, or the match result if it could.
-- (nonnull NSDictionary *)matchWithPathComponentsIfPossible:(nonnull NSArray<NSString *> *)pathComponents;
+- (nonnull NSDictionary<NSString *, NSString *> *)matchWithPathComponentsIfPossible:(nonnull NSArray<NSString *> *)pathComponents;
 
 @end

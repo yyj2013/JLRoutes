@@ -11,6 +11,9 @@
  */
 
 #import "JLURLRouter.h"
+#import "JLRoutes.h"
+#import "NSString+JLRouteAdditions.h"
+#import "NSURL+JLRouteAdditions.h"
 
 
 @interface JLURLRouter ()
@@ -24,6 +27,11 @@
 
 
 @implementation JLURLRouter
+
+- (instancetype)init
+{
+    return [self initWithScheme:nil];
+}
 
 - (nonnull instancetype)initWithScheme:(nullable NSString *)scheme
 {
@@ -76,7 +84,7 @@
     return route;
 }
 
-- (nonnull NSArray<__kindof JLRoute *> *)addRoutes:(nonnull NSArray<NSString *> *)routePaths handler:(nonnull BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock
+- (nonnull NSArray<__kindof JLRoute *> *)addRoutesWithPaths:(nonnull NSArray<NSString *> *)routePaths handler:(nonnull BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock
 {
     NSMutableArray *routes = [NSMutableArray array];
     for (NSString *path in routePaths)
@@ -121,85 +129,100 @@
 
 - (BOOL)canRouteURL:(nonnull NSURL *)URL
 {
-    
+    return [self routeURL:URL userInfo:nil dryRun:YES];
 }
 
 - (BOOL)routeURL:(nonnull NSURL *)URL
 {
-    
+    return [self routeURL:URL userInfo:nil dryRun:NO];
 }
 
 - (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo
 {
-    
+    return [self routeURL:URL userInfo:userInfo dryRun:NO];
 }
 
-/*+ (BOOL)routeURL:(NSURL *)URL withController:(JLRoutes *)routesController parameters:(NSDictionary *)parameters executeBlock:(BOOL)executeBlock {
-    [self verboseLogWithFormat:@"Trying to route URL %@", URL];
+- (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo dryRun:(BOOL)dryRun
+{
     BOOL didRoute = NO;
-    NSArray *routes = routesController.routes;
-    NSDictionary *queryParameters = [URL.query JLRoutes_URLParameterDictionary];
-    [self verboseLogWithFormat:@"Parsed query parameters: %@", queryParameters];
+    BOOL shouldDecodePlusSymbols = [JLRoutes shouldDecodePlusSymbols];
     
-    NSDictionary *fragmentParameters = [URL.fragment JLRoutes_URLParameterDictionary];
-    [self verboseLogWithFormat:@"Parsed fragment parameters: %@", fragmentParameters];
+    NSDictionary *queryParameters = [URL.query JLRoutes_URLParameterDictionaryDecodingPlusSymbols:shouldDecodePlusSymbols];
+    NSDictionary *fragmentParameters = [URL.fragment JLRoutes_URLParameterDictionaryDecodingPlusSymbols:shouldDecodePlusSymbols];
     
     // break the URL down into path components and filter out any leading/trailing slashes from it
-    NSArray *pathComponents = [(URL.pathComponents ?: @[]) filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT SELF like '/'"]];
+    NSArray *pathComponents = [URL JLRoutes_nonSlashPathComponents];
     
-    if ([URL.host rangeOfString:@"."].location == NSNotFound && ![URL.host isEqualToString:@"localhost"]) {
-        // For backward compatibility, handle scheme://path/to/ressource as if path was part of the
-        // path if it doesn't look like a domain name (no dot in it)
+    if ([URL.host rangeOfString:@"."].location == NSNotFound && ![URL.host isEqualToString:@"localhost"])
+    {
+        // handle scheme://path/to/resource as if 'path' was part of the path itself instead of the host
         pathComponents = [@[URL.host] arrayByAddingObjectsFromArray:pathComponents];
     }
     
-    [self verboseLogWithFormat:@"URL path components: %@", pathComponents];
+    // try to find an exact path match
+    NSString *composedPath = [@"/" stringByAppendingString:[pathComponents componentsJoinedByString:@"/"]];
+    JLRoute *exactPathMatch = [self routeWithPath:composedPath];
+    if (exactPathMatch != nil)
+    {
+        // found it, call the block
+        if (!dryRun)
+        {
+            NSDictionary *matchParams = [exactPathMatch matchWithPathComponentsIfPossible:pathComponents];
+            NSDictionary *params = [self routeParamsForRoute:exactPathMatch queryParams:queryParameters fragmentParams:fragmentParameters matchParams:matchParams URL:URL userInfo:userInfo];
+            exactPathMatch.handler(params);
+        }
+        return YES;
+    }
     
-    for (_JLRoute *route in routes) {
-        NSDictionary *matchParameters = [route parametersForURL:URL components:pathComponents];
-        if (matchParameters) {
-            [self verboseLogWithFormat:@"Successfully matched %@", route];
-            if (!executeBlock) {
-                return YES;
-            }
-            
-            // add the URL parameters
-            NSMutableDictionary *finalParameters = [NSMutableDictionary dictionary];
-            
-            // in increasing order of precedence: query, fragment, route, builtin
-            [finalParameters addEntriesFromDictionary:queryParameters];
-            [finalParameters addEntriesFromDictionary:fragmentParameters];
-            [finalParameters addEntriesFromDictionary:matchParameters];
-            [finalParameters addEntriesFromDictionary:parameters];
-            finalParameters[kJLRoutePatternKey] = route.pattern;
-            finalParameters[kJLRouteURLKey] = URL;
-            __strong __typeof(route.parentRoutesController) strongParentRoutesController = route.parentRoutesController;
-            finalParameters[kJLRouteNamespaceKey] = strongParentRoutesController.namespaceKey ?: [NSNull null];
-            
-            [self verboseLogWithFormat:@"Final parameters are %@", finalParameters];
-            didRoute = route.block(finalParameters);
-            if (didRoute) {
-                break;
-            }
+    // no exact match, so lets run through everything and try to find a match
+    for (JLRoute *route in self.routes)
+    {
+        NSDictionary *matchParams = [route matchWithPathComponentsIfPossible:pathComponents];
+        if (matchParams == nil)
+        {
+            // no match, keep going
+            continue;
+        }
+        
+        // if execution gets here, we've found a match!
+        
+        if (dryRun)
+        {
+            return YES;
+        }
+        
+        // generate block params
+        NSDictionary *params = [self routeParamsForRoute:exactPathMatch queryParams:queryParameters fragmentParams:fragmentParameters matchParams:matchParams URL:URL userInfo:userInfo];
+        
+        // call it
+        didRoute = route.handler(params);
+        
+        // if it returned YES, we're done
+        if (didRoute)
+        {
+            break;
         }
     }
+}
+
+- (nonnull NSDictionary <NSString *, id> *)routeParamsForRoute:(JLRoute *)route queryParams:(NSDictionary *)queryParams fragmentParams:(NSDictionary *)fragmentParams matchParams:(NSDictionary *)matchParams URL:(NSURL *)URL userInfo:(NSDictionary *)userInfo
+{
+    NSMutableDictionary <NSString *, id> *params = [NSMutableDictionary dictionary];
     
-    if (!didRoute) {
-        [self verboseLogWithFormat:@"Could not find a matching route, returning NO"];
+    // in increasing order of precedence: query, fragment, route
+    [params addEntriesFromDictionary:queryParams];
+    [params addEntriesFromDictionary:fragmentParams];
+    [params addEntriesFromDictionary:matchParams];
+    
+    params[JLRouteParamRouteKey] = route;
+    params[JLRouteParamURLKey] = URL;
+    
+    if (userInfo.count > 0)
+    {
+        params[JLRouteParamUserInfoKey] = userInfo;
     }
     
-    // if we couldn't find a match and this routes controller specifies to fallback and its also not the global routes controller, then...
-    if (!didRoute && routesController.shouldFallbackToGlobalRoutes && ![routesController isGlobalRoutesController]) {
-        [self verboseLogWithFormat:@"Falling back to global routes..."];
-        didRoute = [self routeURL:URL withController:[self globalRoutes] parameters:parameters executeBlock:executeBlock];
-    }
-    
-    // if, after everything, we did not route anything and we have an unmatched URL handler, then call it
-    if (!didRoute && routesController.unmatchedURLHandler) {
-        routesController.unmatchedURLHandler(routesController, URL, parameters);
-    }
-    
-    return didRoute;
-}*/
+    return [params copy];
+}
 
 @end

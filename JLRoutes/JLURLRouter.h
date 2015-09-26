@@ -14,10 +14,10 @@
 #import "JLRoute.h"
 
 
-static NSString *__nonnull const JLRouteParamKey = @"JLRouteParamKey";
-static NSString *__nonnull const JLRouteURLParamKey = @"JLRouteURLParamKey";
-static NSString *__nonnull const JLRouteWildcardParamsParamKey = @"JLRouteWildcardParamsParamKey";
-static NSString *__nonnull const JLRouteUserInfoParamKey = @"JLRouteUserInfoParamKey";
+static NSString *__nonnull const JLRouteParamRouteKey = @"JLRouteParamRouteKey";
+static NSString *__nonnull const JLRouteParamURLKey = @"JLRouteParamURLKey";
+static NSString *__nonnull const JLRouteParamWildcardParamsKey = @"JLRouteParamWildcardParamsKey";
+static NSString *__nonnull const JLRouteParamUserInfoKey = @"JLRouteParamUserInfoKey";
 
 
 @interface JLURLRouter : NSObject

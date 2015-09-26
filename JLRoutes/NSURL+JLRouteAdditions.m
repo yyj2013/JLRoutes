@@ -15,7 +15,7 @@
 
 @implementation NSURL (JLRouteAdditions)
 
-- (nonnull NSArray *)JLRoutes_nonSlashPathComponents
+- (nonnull NSArray<NSString *> *)JLRoutes_nonSlashPathComponents
 {
     return [(self.pathComponents ?: @[]) filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"NOT SELF like '/'"]];
 }
