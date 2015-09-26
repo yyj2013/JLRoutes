@@ -14,23 +14,25 @@
 
 
 static NSUInteger const JLRouteDefaultPriority = 0;
+static NSUInteger const JLRouteHighPriority = 1000;
+static NSUInteger const JLRouteHighestPriority = 10000;
 
 
-@class JLRoutes;
+@class JLURLRouter;
 
-@interface JLRoute : NSObject
+@interface JLRoute : NSObject <NSCopying>
 
-@property (nonatomic, weak, nullable) JLRoutes *parentRoutesController;
+@property (nonatomic, weak, nullable) __kindof JLURLRouter *router;
 
-@property (nonatomic, strong, readonly, nonnull) NSString *identifier;
 @property (nonatomic, strong, readonly, nonnull) NSString *path;
 @property (nonatomic, strong, readonly, nonnull) NSArray <NSString *> *pathComponents;
-@property (nonatomic, strong, readonly, nonnull) BOOL (^handler)(NSDictionary *__nonnull parameters);
+@property (nonatomic, strong, readonly, nonnull) BOOL (^handler)(NSDictionary <NSString *, id> *__nonnull parameters);
 @property (nonatomic, readonly) NSUInteger priority;
 
-- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
+/// Creates a route instance
+- (nonnull instancetype)initWithPath:(nullable NSString *)path priority:(NSUInteger)priority handler:(nullable BOOL (^)(NSDictionary <NSString *, id> *__nonnull parameters))handlerBlock NS_DESIGNATED_INITIALIZER;
 
-/// Try to match with the given URL components. Returns nil if a match couldn't be made, or the match result if it could.
-- (nonnull NSDictionary *)matchWithURLComponentsIfPossible:(nonnull NSArray<NSString *> *)URLComponents;
+/// Try to match with the given path components. Returns nil if a match couldn't be made, or the match result if it could.
+- (nonnull NSDictionary *)matchWithPathComponentsIfPossible:(nonnull NSArray<NSString *> *)pathComponents;
 
 @end
