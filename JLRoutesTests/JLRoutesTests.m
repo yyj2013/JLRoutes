@@ -106,9 +106,6 @@ static JLRoutesTests *testsInstance = nil;
 }
 
 - (void)testBasicRouting {
-	[self route:nil];
-	JLValidateNoLastMatch();
-	
 	[self route:@"tests:/"];
 	JLValidateAnyRouteMatched();
 	JLValidatePattern(@"/");
