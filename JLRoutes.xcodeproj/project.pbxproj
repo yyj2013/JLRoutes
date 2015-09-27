@@ -11,15 +11,12 @@
 		5C5AD9B61B45C07800ED25A3 /* JLRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33681C16C6DC9300F983AA /* JLRoutes.m */; };
 		5D33681616C6DC9300F983AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33681516C6DC9300F983AA /* Foundation.framework */; };
 		5D33681D16C6DC9300F983AA /* JLRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33681C16C6DC9300F983AA /* JLRoutes.m */; };
-		5D33682716C6DC9300F983AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33682616C6DC9300F983AA /* UIKit.framework */; };
-		5D33682816C6DC9300F983AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33681516C6DC9300F983AA /* Foundation.framework */; };
-		5D33682B16C6DC9300F983AA /* libJLRoutes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33681216C6DC9300F983AA /* libJLRoutes.a */; };
-		5D33683116C6DC9300F983AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D33682F16C6DC9300F983AA /* InfoPlist.strings */; };
-		5D33683416C6DC9300F983AA /* JLRoutesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D33683316C6DC9300F983AA /* JLRoutesTests.m */; };
 		5D8513F31BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */; settings = {ASSET_TAGS = (); }; };
 		5D8513F41BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */; settings = {ASSET_TAGS = (); }; };
 		5D8513F51BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		5D8513F61BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */; settings = {ASSET_TAGS = (); }; };
+		5D8513FE1BB7907C0053C3C0 /* JLRoutesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D8513FD1BB7907C0053C3C0 /* JLRoutesTests.m */; };
+		5D8514001BB7907C0053C3C0 /* libJLRoutes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D33681216C6DC9300F983AA /* libJLRoutes.a */; settings = {ASSET_TAGS = (); }; };
 		5D9059D51BAB4DFA00943E69 /* JLRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059D31BAB4DFA00943E69 /* JLRoute.h */; settings = {ASSET_TAGS = (); }; };
 		5D9059D61BAB4DFA00943E69 /* JLRoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D9059D31BAB4DFA00943E69 /* JLRoute.h */; settings = {ASSET_TAGS = (); }; };
 		5D9059D71BAB4DFA00943E69 /* JLRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9059D41BAB4DFA00943E69 /* JLRoute.m */; settings = {ASSET_TAGS = (); }; };
@@ -36,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5D33682916C6DC9300F983AA /* PBXContainerItemProxy */ = {
+		5D8514011BB7907C0053C3C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5D33680A16C6DC9300F983AA /* Project object */;
 			proxyType = 1;
@@ -51,15 +48,13 @@
 		5D33681516C6DC9300F983AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5D33681A16C6DC9300F983AA /* JLRoutes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRoutes.h; sourceTree = "<group>"; };
 		5D33681C16C6DC9300F983AA /* JLRoutes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLRoutes.m; sourceTree = "<group>"; };
-		5D33682316C6DC9300F983AA /* JLRoutesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLRoutesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D33682616C6DC9300F983AA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		5D33682E16C6DC9300F983AA /* JLRoutesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JLRoutesTests-Info.plist"; sourceTree = "<group>"; };
-		5D33683016C6DC9300F983AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5D33683216C6DC9300F983AA /* JLRoutesTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JLRoutesTests.h; sourceTree = "<group>"; };
-		5D33683316C6DC9300F983AA /* JLRoutesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLRoutesTests.m; sourceTree = "<group>"; };
 		5D33684416C6DCCC00F983AA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5D8513F11BB6EF720053C3C0 /* NSURL+JLRouteAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JLRouteAdditions.h"; sourceTree = "<group>"; };
 		5D8513F21BB6EF720053C3C0 /* NSURL+JLRouteAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JLRouteAdditions.m"; sourceTree = "<group>"; };
+		5D8513FB1BB7907C0053C3C0 /* JLRoutesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JLRoutesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D8513FD1BB7907C0053C3C0 /* JLRoutesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JLRoutesTests.m; sourceTree = "<group>"; };
+		5D8513FF1BB7907C0053C3C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D9059D31BAB4DFA00943E69 /* JLRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLRoute.h; sourceTree = "<group>"; };
 		5D9059D41BAB4DFA00943E69 /* JLRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLRoute.m; sourceTree = "<group>"; };
 		5D9059D91BAB4ED600943E69 /* NSString+JLRouteAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JLRouteAdditions.h"; sourceTree = "<group>"; };
@@ -84,13 +79,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D33681F16C6DC9300F983AA /* Frameworks */ = {
+		5D8513F81BB7907C0053C3C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D33682716C6DC9300F983AA /* UIKit.framework in Frameworks */,
-				5D33682816C6DC9300F983AA /* Foundation.framework in Frameworks */,
-				5D33682B16C6DC9300F983AA /* libJLRoutes.a in Frameworks */,
+				5D8514001BB7907C0053C3C0 /* libJLRoutes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				5D33681716C6DC9300F983AA /* JLRoutes */,
-				5D33682C16C6DC9300F983AA /* JLRoutesTests */,
 				5CB4EB4A1B45BF5B0058E91A /* JLRoutes iOS Framework */,
+				5D8513FC1BB7907C0053C3C0 /* JLRoutesTests */,
 				5D33681416C6DC9300F983AA /* Frameworks */,
 				5D33681316C6DC9300F983AA /* Products */,
 			);
@@ -120,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				5D33681216C6DC9300F983AA /* libJLRoutes.a */,
-				5D33682316C6DC9300F983AA /* JLRoutesTests.xctest */,
 				5CB4EB491B45BF5B0058E91A /* JLRoutes.framework */,
+				5D8513FB1BB7907C0053C3C0 /* JLRoutesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,23 +146,13 @@
 			path = JLRoutes;
 			sourceTree = "<group>";
 		};
-		5D33682C16C6DC9300F983AA /* JLRoutesTests */ = {
+		5D8513FC1BB7907C0053C3C0 /* JLRoutesTests */ = {
 			isa = PBXGroup;
 			children = (
-				5D33683216C6DC9300F983AA /* JLRoutesTests.h */,
-				5D33683316C6DC9300F983AA /* JLRoutesTests.m */,
-				5D33682D16C6DC9300F983AA /* Supporting Files */,
+				5D8513FD1BB7907C0053C3C0 /* JLRoutesTests.m */,
+				5D8513FF1BB7907C0053C3C0 /* Info.plist */,
 			);
 			path = JLRoutesTests;
-			sourceTree = "<group>";
-		};
-		5D33682D16C6DC9300F983AA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5D33682E16C6DC9300F983AA /* JLRoutesTests-Info.plist */,
-				5D33682F16C6DC9300F983AA /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,23 +220,22 @@
 			productReference = 5D33681216C6DC9300F983AA /* libJLRoutes.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		5D33682216C6DC9300F983AA /* JLRoutesTests */ = {
+		5D8513FA1BB7907C0053C3C0 /* JLRoutesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5D33683A16C6DC9300F983AA /* Build configuration list for PBXNativeTarget "JLRoutesTests" */;
+			buildConfigurationList = 5D8514031BB7907C0053C3C0 /* Build configuration list for PBXNativeTarget "JLRoutesTests" */;
 			buildPhases = (
-				5D33681E16C6DC9300F983AA /* Sources */,
-				5D33681F16C6DC9300F983AA /* Frameworks */,
-				5D33682016C6DC9300F983AA /* Resources */,
-				5D33682116C6DC9300F983AA /* ShellScript */,
+				5D8513F71BB7907C0053C3C0 /* Sources */,
+				5D8513F81BB7907C0053C3C0 /* Frameworks */,
+				5D8513F91BB7907C0053C3C0 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5D33682A16C6DC9300F983AA /* PBXTargetDependency */,
+				5D8514021BB7907C0053C3C0 /* PBXTargetDependency */,
 			);
 			name = JLRoutesTests;
 			productName = JLRoutesTests;
-			productReference = 5D33682316C6DC9300F983AA /* JLRoutesTests.xctest */;
+			productReference = 5D8513FB1BB7907C0053C3C0 /* JLRoutesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -268,6 +250,9 @@
 				TargetAttributes = {
 					5CB4EB481B45BF5B0058E91A = {
 						CreatedOnToolsVersion = 6.4;
+					};
+					5D8513FA1BB7907C0053C3C0 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -284,8 +269,8 @@
 			projectRoot = "";
 			targets = (
 				5D33681116C6DC9300F983AA /* JLRoutes */,
-				5D33682216C6DC9300F983AA /* JLRoutesTests */,
 				5CB4EB481B45BF5B0058E91A /* JLRoutes-iOS */,
+				5D8513FA1BB7907C0053C3C0 /* JLRoutesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -298,31 +283,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D33682016C6DC9300F983AA /* Resources */ = {
+		5D8513F91BB7907C0053C3C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D33683116C6DC9300F983AA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		5D33682116C6DC9300F983AA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5CB4EB441B45BF5B0058E91A /* Sources */ = {
@@ -349,34 +317,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5D33681E16C6DC9300F983AA /* Sources */ = {
+		5D8513F71BB7907C0053C3C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D33683416C6DC9300F983AA /* JLRoutesTests.m in Sources */,
+				5D8513FE1BB7907C0053C3C0 /* JLRoutesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5D33682A16C6DC9300F983AA /* PBXTargetDependency */ = {
+		5D8514021BB7907C0053C3C0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5D33681116C6DC9300F983AA /* JLRoutes */;
-			targetProxy = 5D33682916C6DC9300F983AA /* PBXContainerItemProxy */;
+			targetProxy = 5D8514011BB7907C0053C3C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		5D33682F16C6DC9300F983AA /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5D33683016C6DC9300F983AA /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5CB4EB5C1B45BF5B0058E91A /* Debug */ = {
@@ -539,34 +496,62 @@
 			};
 			name = Release;
 		};
-		5D33683B16C6DC9300F983AA /* Debug */ = {
+		5D8514041BB7907C0053C3C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = JLRoutesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "JLRoutesTests/JLRoutesTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joeldev.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joeldev.JLRoutesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		5D33683C16C6DC9300F983AA /* Release */ = {
+		5D8514051BB7907C0053C3C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = JLRoutesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "JLRoutesTests/JLRoutesTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joeldev.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = com.joeldev.JLRoutesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -601,14 +586,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5D33683A16C6DC9300F983AA /* Build configuration list for PBXNativeTarget "JLRoutesTests" */ = {
+		5D8514031BB7907C0053C3C0 /* Build configuration list for PBXNativeTarget "JLRoutesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5D33683B16C6DC9300F983AA /* Debug */,
-				5D33683C16C6DC9300F983AA /* Release */,
+				5D8514041BB7907C0053C3C0 /* Debug */,
+				5D8514051BB7907C0053C3C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
