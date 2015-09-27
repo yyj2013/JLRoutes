@@ -29,7 +29,7 @@ static NSString *__nonnull const JLRouteParamUserInfoKey = @"JLRouteParamUserInf
 @property (nonatomic, strong, nullable, readonly) NSString *scheme;
 
 /// Called any time routeURL returns NO. Respects shouldFallbackToGlobalRoutes.
-@property (nonatomic, copy, nullable) void (^unmatchedURLHandler)(__kindof JLURLRouter *__nonnull router, NSURL *__nonnull URL, NSDictionary *__nonnull parameters);
+@property (nonatomic, copy, nullable) BOOL (^unmatchedURLHandler)(__kindof JLURLRouter *__nonnull router, NSURL *__nonnull URL, NSDictionary *__nonnull userInfo);
 
 /// Customize the default router class. Defaults to [JLRoute class].
 @property (nonatomic, nonnull) Class defaultRouterClass;

@@ -138,7 +138,7 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 
 + (JLURLRouter *)eligibleRouterForURL:(nonnull NSURL *)URL
 {
-    return [self routerForScheme:URL.scheme] ?: [self defaultRouter];
+    return routersByScheme[URL.scheme] ?: [self defaultRouter];
 }
 
 #pragma mark - Settings

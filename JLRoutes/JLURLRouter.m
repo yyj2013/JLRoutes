@@ -198,7 +198,7 @@
         }
         
         // generate block params
-        NSDictionary *params = [self routeParamsForRoute:exactPathMatch queryParams:queryParameters fragmentParams:fragmentParameters matchParams:matchParams URL:URL userInfo:userInfo];
+        NSDictionary *params = [self routeParamsForRoute:route queryParams:queryParameters fragmentParams:fragmentParameters matchParams:matchParams URL:URL userInfo:userInfo];
         
         // call it
         didRoute = route.handler(params);
@@ -208,6 +208,11 @@
         {
             break;
         }
+    }
+    
+    if (!didRoute && self.unmatchedURLHandler != nil)
+    {
+        didRoute = self.unmatchedURLHandler(self, URL, userInfo);
     }
     
     return didRoute;
