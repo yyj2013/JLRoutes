@@ -25,6 +25,9 @@ static NSString *__nonnull const JLRouteParamUserInfoKey = @"JLRouteParamUserInf
 /// Create URL router instance for the given scheme. Scheme is optional.
 - (nonnull instancetype)initWithScheme:(nullable NSString *)scheme NS_DESIGNATED_INITIALIZER;
 
+
+// -- Properties -----------------
+
 /// The URL scheme associated with this router
 @property (nonatomic, strong, nullable, readonly) NSString *scheme;
 

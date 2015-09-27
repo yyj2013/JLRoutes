@@ -130,8 +130,11 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
     JLURLRouter *router = [self eligibleRouterForURL:URL];
     if (router == nil)
     {
+        JLRoutesLog(JLRoutesLogLevelVerbose, @"warning: unable to find a router for URL %@", URL);
         return NO;
     }
+    
+    JLRoutesLog(JLRoutesLogLevelVerbose, @"trying to find a route for URL %@", URL);
     
     return [router routeURL:URL userInfo:userInfo];
 }

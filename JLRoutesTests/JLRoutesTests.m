@@ -69,7 +69,7 @@ static JLRoutesTests *testsInstance = nil;
 {
     id defaultHandler = [self defaultRouteHandler];
 	
-    [JLRoutes setLogLevel:JLRoutesLogLevelVerbose];
+    [JLRoutes setLogLevel:JLRoutesLogLevelInfo];
 	
 	// used in testBasicRouting
 	[[JLRoutes defaultRouter] addRouteWithPath:@"/test" handler:defaultHandler];
@@ -492,7 +492,6 @@ static JLRoutesTests *testsInstance = nil;
 
 - (void)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters
 {
-    NSLog(@"*** Routing %@", URL);
 	self.lastMatch = nil;
 	self.didRoute = [JLRoutes routeURL:URL userInfo:parameters];
 }

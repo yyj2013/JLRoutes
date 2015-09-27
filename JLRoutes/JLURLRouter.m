@@ -192,6 +192,8 @@
         
         // if execution gets here, we've found a match!
         
+        JLRoutesLog(JLRoutesLogLevelInfo, @"routed '%@' with '%@:%@'", URL, ([self.scheme isEqualToString:JLRoutesDefaultRouterScheme] ? @"default" : self.scheme), route.path);
+        
         if (dryRun)
         {
             return YES;
@@ -201,6 +203,7 @@
         NSDictionary *params = [self routeParamsForRoute:route queryParams:queryParameters fragmentParams:fragmentParameters matchParams:matchParams URL:URL userInfo:userInfo];
         
         // call it
+        JLRoutesLog(JLRoutesLogLevelVerbose, @"calling handler block with params: %@", params);
         didRoute = route.handler(params);
         
         // if it returned YES, we're done
