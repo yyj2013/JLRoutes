@@ -144,6 +144,12 @@
 
 - (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo dryRun:(BOOL)dryRun
 {
+    NSParameterAssert(URL != nil);
+    if (URL == nil)
+    {
+        return NO;
+    }
+    
     BOOL didRoute = NO;
     BOOL shouldDecodePlusSymbols = [JLRoutes shouldDecodePlusSymbols];
     

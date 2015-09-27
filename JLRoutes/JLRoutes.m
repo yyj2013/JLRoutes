@@ -100,6 +100,10 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 + (BOOL)canRouteURL:(nonnull NSURL *)URL
 {
     NSParameterAssert(URL != nil);
+    if (URL == nil)
+    {
+        return NO;
+    }
     
     JLURLRouter *router = [self eligibleRouterForURL:URL];
     if (router == nil)
@@ -112,13 +116,16 @@ void JLRoutesLog(JLRoutesLogLevel level, NSString *__nonnull format, ...)
 
 + (BOOL)routeURL:(nonnull NSURL *)URL
 {
-    NSParameterAssert(URL != nil);
     return [self routeURL:URL userInfo:nil];
 }
 
 + (BOOL)routeURL:(nonnull NSURL *)URL userInfo:(nullable NSDictionary *)userInfo
 {
     NSParameterAssert(URL != nil);
+    if (URL == nil)
+    {
+        return NO;
+    }
     
     JLURLRouter *router = [self eligibleRouterForURL:URL];
     if (router == nil)
