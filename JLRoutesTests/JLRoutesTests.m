@@ -218,15 +218,19 @@ static JLRoutesTests *testsInstance = nil;
 	[self route:@"tests://xyz/wildcard/matches/with/extra/path/components"];
 	JLValidateAnyRouteMatched();
 	JLValidateParameterCount(1);
-	NSArray *wildcardMatches = @[@"matches", @"with", @"extra", @"path", @"components"];
-	JLValidateParameter(@{JLRouteParamWildcardParamsKey: wildcardMatches});
+    {
+        NSArray *wildcardMatches = @[@"matches", @"with", @"extra", @"path", @"components"];
+        JLValidateParameter(@{JLRouteParamWildcardParamsKey: wildcardMatches});
+    }
 
 	[self route:@"tests://route/matches/with/wildcard"];
 	JLValidateAnyRouteMatched();
 	JLValidateParameterCount(2);
 	JLValidateParameter(@{@"param": @"matches"});
-	NSArray *parameterWildcardMatches = @[@"with", @"wildcard"];
-	JLValidateParameter(@{JLRouteParamWildcardParamsKey: parameterWildcardMatches});
+    {
+        NSArray *parameterWildcardMatches = @[@"with", @"wildcard"];
+        JLValidateParameter(@{JLRouteParamWildcardParamsKey: parameterWildcardMatches});
+    }
 
 	[self route:@"tests://doesnt/exist/and/wont/match"];
 	JLValidateNoLastMatch();
@@ -235,6 +239,8 @@ static JLRoutesTests *testsInstance = nil;
     JLValidateAnyRouteMatched();
     JLValidatePattern(@"/test");
     JLValidateParameterCount(0);
+    
+    
 }
 
 - (void)testMultiple
