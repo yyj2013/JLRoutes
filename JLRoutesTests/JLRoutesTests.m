@@ -148,6 +148,14 @@ static JLRoutesTests *testsInstance = nil;
 	JLValidateAnyRouteMatched();
 	JLValidateParameterCount(1);
 	JLValidateParameter(@{@"key": @"value"});
+    
+    [self route:@"tests://?key=value1&key=value2&key=value3"];
+    JLValidateAnyRouteMatched();
+    JLValidateParameterCount(1);
+    {
+        NSArray *expected = @[@"value1", @"value2", @"value3"];
+        JLValidateParameter(@{@"key": expected});
+    }
 	
 	[self route:@"tests://user/view/joeldev"];
 	JLValidateAnyRouteMatched();
