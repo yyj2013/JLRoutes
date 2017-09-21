@@ -30,6 +30,10 @@ JLRoutes is available for installation via CocoaPods.
 ```objc
 // in your app delegate:
 
+
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // ...
   [JLRoutes addRoute:@"/user/view/:userID" handler:^BOOL(NSDictionary *parameters) {
